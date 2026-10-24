@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareSlot - Clinic Appointments</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-mark">+</span>
+            <span class="brand-name">CareSlot</span>
+        </div>
+        <nav class="tabs">
+            <button class="tab active" data-view="patientView">Book Appointment</button>
+            <button class="tab" data-view="clinicView">Clinic Dashboard</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="patientView" class="view">
+            <div class="hero">
+                <h1>Book your clinic visit</h1>
+                <p>Choose a time that suits you and confirm in a few seconds.</p>
+            </div>
+
+            <div class="card filter-bar">
+                <div class="field">
+                    <label for="filterDate">Show slots on</label>
+                    <input type="date" id="filterDate">
+                </div>
+                <button class="btn ghost" id="clearFilter">Show all dates</button>
+            </div>
+
+            <div id="patientSlots" class="slot-grid"></div>
+        </section>
+
+        <section id="clinicView" class="view hidden">
+            <div class="hero">
+                <h1>Clinic dashboard</h1>
+                <p>Publish new time slots and manage your appointments.</p>
+            </div>
+
+            <form id="slotForm" class="card slot-form" novalidate>
+                <h2>Add a new slot</h2>
+                <div class="form-grid">
+                    <div class="field wide">
+                        <label for="clinicName">Clinic name</label>
+                        <input type="text" id="clinicName" name="clinicName" placeholder="City Care Clinic">
+                        <small class="field-error" data-for="clinicName"></small>
+                    </div>
+                    <div class="field">
+                        <label for="slotDate">Date</label>
+                        <input type="date" id="slotDate" name="slotDate">
+                        <small class="field-error" data-for="slotDate"></small>
+                    </div>
+                    <div class="field">
+                        <label for="startTime">Start time</label>
+                        <input type="time" id="startTime" name="startTime">
+                        <small class="field-error" data-for="startTime"></small>
+                    </div>
+                    <div class="field">
+                        <label for="endTime">End time</label>
+                        <input type="time" id="endTime" name="endTime">
+                        <small class="field-error" data-for="endTime"></small>
+                    </div>
+                </div>
+                <button type="submit" class="btn primary">Create Slot</button>
+            </form>
+
+            <h2 class="list-title">All slots</h2>
+            <div id="clinicSlots" class="slot-list"></div>
+        </section>
+    </main>
+
+    <dialog id="bookingDialog">
+        <form id="bookingForm" novalidate>
+            <h2>Confirm your appointment</h2>
+            <p id="bookingSummary" class="summary"></p>
+
+            <div class="field">
+                <label for="patientName">Full name</label>
+                <input type="text" id="patientName" name="patientName" placeholder="Your name">
+                <small class="field-error" data-for="patientName"></small>
+            </div>
+            <div class="field">
+                <label for="patientEmail">Email</label>
+                <input type="email" id="patientEmail" name="patientEmail" placeholder="you@mail.com">
+                <small class="field-error" data-for="patientEmail"></small>
+            </div>
+            <div class="field">
+                <label for="patientPhone">Phone (optional)</label>
+                <input type="tel" id="patientPhone" name="patientPhone" placeholder="9876543210">
+                <small class="field-error" data-for="patientPhone"></small>
+            </div>
+
+            <div class="dialog-actions">
+                <button type="button" class="btn ghost" id="closeBooking">Close</button>
+                <button type="submit" class="btn primary" id="confirmBooking">Confirm Booking</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="confirmDialog">
+        <form method="dialog">
+            <h2>Are you sure?</h2>
+            <p id="confirmMessage" class="summary"></p>
+            <div class="dialog-actions">
+                <button value="no" class="btn ghost">No, keep it</button>
+                <button value="yes" class="btn danger">Yes, cancel</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div id="toastBox" class="toast-box"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
