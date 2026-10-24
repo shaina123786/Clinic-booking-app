@@ -1,0 +1,27 @@
+{
+  "name": "booking-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "start": "node src/server.js",
+  "dev": "node --watch src/server.js",
+  "test": "jest"
+},
+"jest": {
+  "testEnvironment": "node",
+  "testMatch": ["**/tests/**/*.test.js"]
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "sqlite3": "^6.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.5.2",
+    "supertest": "^7.3.1"
+  }
+}
